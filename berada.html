@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard Pelajar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Fredoka', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      background: #fef6f9;
+    }
+
+    .sidebar {
+      width: 220px;
+      background: #ff87ab;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      position: fixed;
+      height: 100vh;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    }
+
+    .sidebar h2 {
+      color: white;
+      margin-bottom: 10px;
+      font-size: 22px;
+    }
+
+    .sidebar a {
+      padding: 12px;
+      background: #ffcad4;
+      color: #333;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .sidebar a:hover, .sidebar a.active {
+      background: #fff;
+      color: #ff4d6d;
+      transform: scale(1.05);
+    }
+
+    .content {
+      margin-left: 240px;
+      padding: 20px;
+      flex-grow: 1;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .content h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #ff4d6d;
+    }
+
+    .content p {
+      font-size: 18px;
+      color: #444;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <aside class="sidebar">
+    <h2>Menu</h2>
+    <a href="#" class="active" onclick="showContent('beranda')">Beranda</a>
+    <a href="#" onclick="showContent('kalender')">Kalender Akademik</a>
+    <a href="#" onclick="showContent('profil')">Profil</a>
+    <a href="#" onclick="showContent('hasil')">Hasil Studi</a>
+    <a href="#" onclick="showContent('prestasi')">Prestasi</a>
+    <a href="#" onclick="showContent('kartu')">Kartu Pelajar</a>
+    <a href="#" onclick="showContent('pembayaran')">Pembayaran</a>
+  </aside>
+
+  <main class="content" id="konten">
+    <h1>Beranda</h1>
+    <p>Selamat datang di dashboard pelajar! Yuk jelajahi menu di samping!</p>
+  </main>
+
+  <script>
+    const konten = document.getElementById('konten');
+    const links = document.querySelectorAll('.sidebar a');
+
+    function showContent(menu) {
+      links.forEach(link => link.classList.remove('active'));
+      event.target.classList.add('active');
+
+      let title = '';
+      let content = '';
+
+      switch(menu) {
+        case 'beranda':
+          title = 'Beranda';
+          content = 'Selamat datang di dashboard pelajar! Yuk jelajahi menu di samping!';
+          break;
+        case 'kalender':
+          title = 'Kalender Akademik';
+          content = 'Berikut adalah kalender akademik tahun ajaran ini.';
+          break;
+        case 'profil':
+          title = 'Profil';
+          content = 'Ini adalah profil kamu. Lengkapi datamu di sini.';
+          break;
+        case 'hasil':
+          title = 'Hasil Studi';
+          content = 'Cek nilai dan hasil belajarmu di sini.';
+          break;
+        case 'prestasi':
+          title = 'Prestasi';
+          content = 'Daftar prestasi yang telah kamu raih selama belajar.';
+          break;
+        case 'kartu':
+          title = 'Kartu Pelajar';
+          content = 'Berikut adalah kartu pelajar digital milikmu.';
+          break;
+        case 'pembayaran':
+          title = 'Pembayaran';
+          content = 'Cek riwayat dan status pembayaran kamu.';
+          break;
+      }
+
+      konten.innerHTML = `<h1>${title}</h1><p>${content}</p>`;
+    }
+  </script>
+
+</body>
+</html>
